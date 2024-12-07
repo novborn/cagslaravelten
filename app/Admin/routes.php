@@ -16,6 +16,9 @@ Route::group([
     $router->resource('categories', CategoryController::class);
     $router->resource('contents', ContentController::class);
     $router->resource('frontend-menus', FrontendMenuController::class);
+    $router->resource('content-galleries', ContentGalleryController::class);
+    $router->resource('testimonials', TestimonialController::class);
+    $router->resource('gallery-sliders', GallerySliderController::class);
 
 
    

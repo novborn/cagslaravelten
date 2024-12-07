@@ -9,19 +9,23 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+   
+ public function up(): void
     {
-        Schema::create('gallery_repeater_items', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('content_id'); // Foreign key for Content model
-            $table->string('thumbnail_image'); // Image URL or path
-            $table->text('thumbnail_description'); // Description text
-            $table->timestamps();
-
-            // Add foreign key constraint
-            $table->foreign('content_id')->references('id')->on('contents')->onDelete('cascade');
-        });
+        if (!Schema::hasTable('gallery_repeater_items')) {
+            Schema::create('gallery_repeater_items', function (Blueprint $table) {
+                $table->id();
+                $table->unsignedBigInteger('content_id');
+                $table->string('thumbnail_image');
+                $table->text('thumbnail_description');
+                $table->timestamps();
+    
+                $table->foreign('content_id')->references('id')->on('contents')->onDelete('cascade');
+            });
+        }
     }
+
+
 
     /**
      * Reverse the migrations.

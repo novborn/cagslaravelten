@@ -27,7 +27,7 @@ class WebsettingsController extends AdminController
         $grid = new Grid(new Websettings());
 
         $grid->column('id', __('Id'));
-        $grid->column('logo', __('Logo'));
+        $grid->column('logo', __('Logo'))->image();
         $grid->column('main_banner', __('Main banner'));
         $grid->column('header_script', __('Header script'));
         $grid->column('footer_script', __('Footer script'));
@@ -71,7 +71,14 @@ class WebsettingsController extends AdminController
     {
         $form = new Form(new Websettings());
 
-        $form->image('logo', 'Main Logo')->move('public/upload/images/')->pick();
+        //$form->image('logo', 'Main Logo')->move('public/upload/images/')->pick();
+
+        $form->image('logo', 'Main Logo')
+        //->thumbnail('1440x450', 400, 400) 
+        ->uniqueName() 
+        ->rules('mimes:png,jpg,jpeg,svg');
+
+
         $form->multipleImage('main_banner', 'Homepage banner')->move('public/upload/images/');
         $form->ckeditor('header_script', __('Header script'));
         $form->ckeditor('footer_script', __('Footer script'));

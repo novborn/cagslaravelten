@@ -1,8 +1,18 @@
     
+
+<?php 
+//dd($webSettings); 
+if(!empty($webSettings->logo)){
+  $logo = $webSettings->logo;
+}else{
+  $logo  = '';
+}
+?>
+
     <nav class="navbar navbar-expand-lg">
         <div class="container">
           <a class="navbar-brand" href="{{ url('/') }}">
-            <img src="{{ asset('frontend/img/logo.svg') }}" alt="" />
+            <img src="<?php echo asset('uploads/' . $logo); ?>" alt="logo" />
           </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -24,7 +34,7 @@
                       <ul class="dropdown-menu">
                             @foreach($menu->children as $child)
                             <li class="dropdown-submenu">
-                                <a class="dropdown-item {{ empty($child->url) ? 'dropdown-toggle' : '' }}" href="{{ empty($child->url) ? '#' : $child->url }}">{{ $child->name }}</a>
+                                <a class="dropdown-item {{ (empty($child->url) || $child->url == '#') ? 'dropdown-toggle' : '' }}" href="{{ empty($child->url) ? '#' : $child->url }}">{{ $child->name }}</a>
                                     @if(count($child->children) > 0)
                                     <ul class="dropdown-menu">
                                             @foreach($child->children as $subChild)

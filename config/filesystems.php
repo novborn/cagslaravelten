@@ -41,13 +41,23 @@ return [
             'visibility' =>'public',
             'url' => env('APP_URL').'/uploads',
         ],
+
+
+        //'public' => [
+          //  'driver' => 'local',
+          //  'root' => storage_path('app/public'),
+          //  'url' => env('APP_URL') . '/storage',
+         //   'visibility' => 'public',
+       // ],
+
+
         'public' => [
             'driver' => 'local',
-            'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
+            'root' => public_path('uploads'), // Set to public/uploads
+            'url' => env('APP_URL') . '/uploads',
             'visibility' => 'public',
-            'throw' => false,
         ],
+
 
         's3' => [
             'driver' => 's3',
